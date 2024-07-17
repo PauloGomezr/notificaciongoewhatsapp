@@ -16,7 +16,7 @@
         function enviarUbicacion(position) {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
-            const mensaje = `Hola, mi ubicación es: https://www.google.com/maps?q=${lat},${lon}`;
+            const mensaje = `Hola, encontre a Dexter mi ubicación es: https://www.google.com/maps?q=${lat},${lon}`;
             const numero = "573212540069"; // Cambia esto por tu número de WhatsApp
             window.location.href = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
         }
