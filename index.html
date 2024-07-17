@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Ubicación a WhatsApp</title>
+    <script>
+        function obtenerUbicacion() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(enviarUbicacion, mostrarError);
+            } else {
+                alert("La geolocalización no es soportada por este navegador.");
+            }
+        }
+
+        function enviarUbicacion(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const mensaje = `Hola, mi ubicación es: https://www.google.com/maps?q=${lat},${lon}`;
+            const numero = "573212540069"; // Cambia esto por tu número de WhatsApp
+            window.location.href = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+        }
+
+        function mostrarError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("El usuario negó el permiso para la geolocalización.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("La ubicación no está disponible.");
+                    break;
+                case error.TIMEOUT:
+                    alert("La solicitud de geolocalización ha expirado.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("Ocurrió un error desconocido.");
+                    break;
+            }
+        }
+    </script>
+</head>
+<body onload="obtenerUbicacion()">
+    <h1>Enviando ubicación a WhatsApp...</h1>
+</body>
+</html>
